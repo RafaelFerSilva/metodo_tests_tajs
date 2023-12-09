@@ -1,4 +1,4 @@
-import { describe, it, expect } from '@jest/globals'
+import { describe, it, expect, jest } from '@jest/globals'
 import Person from '../src/person'
 
 describe('#Person Suite', () => {
@@ -82,6 +82,28 @@ describe('#Person Suite', () => {
                 lastName: 'Silva'
             }
             expect(Person.save(mockPerson)).toEqual({message: 'registrado com sucesso!!'})
+        })
+    })
+
+    describe('#process', () => {
+        it('should process a valid person', () => {
+            const mockPerson = {
+                name: 'Zezinho da Silva',
+                cpf: '123.456.789-00'
+            }
+            jest.spyOn(Person, Person.validate.name).mockReturnValue()
+            // jest.spyOn(Person, Person.validate.name).mockImplementation(() => {
+            //     throw new Error('Deu ruim')
+            // })
+            jest.spyOn(Person, Person.format.name).mockReturnValue({
+                name: 'Zezinho',
+                lastName: 'da Silva',
+                cpf: '12345678900'
+            })
+
+            const output = Person.process(mockPerson)
+
+            expect(output).toStrictEqual('ok')
         })
     })
 })
