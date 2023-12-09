@@ -56,4 +56,32 @@ describe('#Person Suite', () => {
             expect(formattedPerson).toStrictEqual(expected)
         })
     })
+
+    describe('#save', () => {
+        it('should throw a erro if person is invalid', () => {
+            const mockPerson = {
+                name: 'Rafael Silva',
+                cpf: '387.458.968-23'
+            }
+            expect(() => Person.save(mockPerson)).toThrow()
+        })
+
+        it('should not throw a erro if person is valid', () => {
+            const mockPerson = {
+                name: 'Rafael Silva',
+                cpf: '387.458.968-23',
+                lastName: 'Silva'
+            }
+            expect(() => Person.save(mockPerson)).not.toThrow()
+        })
+
+        it('should returned a success message if the user is saved', () => {
+            const mockPerson = {
+                name: 'Rafael Silva',
+                cpf: '38745896823',
+                lastName: 'Silva'
+            }
+            expect(Person.save(mockPerson)).toEqual({message: 'registrado com sucesso!!'})
+        })
+    })
 })
