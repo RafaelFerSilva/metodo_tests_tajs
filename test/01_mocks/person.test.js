@@ -1,5 +1,5 @@
 import { describe, it, expect, jest } from '@jest/globals'
-import Person from '../src/person'
+import Person from '../../src/01_mocks/person.js'
 
 describe('#Person Suite', () => {
     describe('#validate', () => {
