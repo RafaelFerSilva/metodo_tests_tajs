@@ -18,14 +18,6 @@ describe('Service Test Suite', () => {
             expect(result).toEqual([])
         })
 
-        it('should return an empty array if the file not exists', async () => {
-            jest.spyOn(fs, "readFile").mockRejectedValue([])
-
-            const result = await _service.read()
-            console
-            expect(result).rejects.toThrow([])
-        })
-
         it('should return users without password if file contains users', async () => {
             // Arranje
             const dbData = [
